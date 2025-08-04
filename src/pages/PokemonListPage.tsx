@@ -28,37 +28,6 @@ export const PokemonListPage: React.FC = () => {
 
     const totalPages = Math.ceil((data?.count || 0) / pageSize);
 
-    const getPageItems = (): (number | "ellipsis")[] => {
-        if (totalPages <= 7) {
-            return Array.from({ length: totalPages }, (_, i) => i + 1);
-        }
-
-        const pages: (number | "ellipsis")[] = [];
-
-        pages.push(1);
-        pages.push(2);
-
-        const start = Math.max(3, currentPage - 1);
-        const end = Math.min(totalPages - 2, currentPage + 1);
-
-        if (start > 3) {
-            pages.push("ellipsis");
-        }
-
-        for (let p = start; p <= end; p++) {
-            pages.push(p);
-        }
-
-        if (end < totalPages - 2) {
-            pages.push("ellipsis");
-        }
-
-        pages.push(totalPages - 1);
-        pages.push(totalPages);
-
-        return pages;
-    };
-
     if (isLoading) {
         return (
             <Spinner animation="border" role="status">
