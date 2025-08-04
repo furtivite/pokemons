@@ -27,9 +27,13 @@ module.exports = {
     ]
   },
   devServer: {
+    static: {
+      directory: path.resolve(__dirname, 'public'),
+      serveIndex: false,
+    },
     historyApiFallback: true,
     open: true,
-    port: 3000
+    port: 3000,
   },
   plugins: [
     new CleanWebpackPlugin(),
