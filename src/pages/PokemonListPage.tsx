@@ -11,6 +11,7 @@ import { SearchBar } from "@components/SearchBar";
 import { PageSizeSelector } from "@components/PageSizeSelector";
 import { PaginationControl } from "@components/PaginationControl";
 import { Link } from "react-router-dom";
+import { LoadingSpinner } from "@components/LoadingSpinner";
 
 export const PokemonListPage: React.FC = () => {
     const [search, setSearch] = useState("");
@@ -31,9 +32,7 @@ export const PokemonListPage: React.FC = () => {
 
     if (isLoading) {
         return (
-            <Spinner animation="border" role="status">
-                <span className="visually-hidden">Loading...</span>
-            </Spinner>
+            <LoadingSpinner />
         );
     }
     if (error) {

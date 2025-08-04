@@ -14,6 +14,7 @@ import {
     useGetPokemonByNameQuery,
 } from '@api/pokemonApi';
 import { AbilityBadge } from '@components/AbilityBadge';
+import { LoadingSpinner } from '@components/LoadingSpinner';
 
 export const PokemonDetailsPage: React.FC = () => {
     const { name } = useParams<{ name: string }>();
@@ -26,9 +27,7 @@ export const PokemonDetailsPage: React.FC = () => {
 
     if (isLoading) {
         return (
-            <Spinner animation="border" role="status" className="d-block mx-auto mt-5">
-                <span className="visually-hidden">Loading...</span>
-            </Spinner>
+            <LoadingSpinner className='d-block mx-auto mt-5' />
         );
     }
 
