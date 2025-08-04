@@ -9,33 +9,11 @@ import {
     Badge,
     ProgressBar,
     Button,
-    OverlayTrigger,
-    Tooltip,
 } from 'react-bootstrap';
 import {
     useGetPokemonByNameQuery,
-    useGetAbilityByNameQuery,
 } from '@api/pokemonApi';
-
-const AbilityBadge: React.FC<{ name: string }> = ({ name }) => {
-    const { data: ability } = useGetAbilityByNameQuery(name);
-    const effect = ability?.effect_entries.find((e) => e.language.name === 'en')?.short_effect || 'Loading...';
-
-    return (
-        <OverlayTrigger
-            placement="top"
-            overlay={<Tooltip id={`tooltip-${name}`}>{effect}</Tooltip>}
-        >
-            <Badge
-                bg="info"
-                className="me-2 text-capitalize"
-                style={{ cursor: 'pointer' }}
-            >
-                {name}
-            </Badge>
-        </OverlayTrigger>
-    );
-};
+import { AbilityBadge } from '@components/AbilityBadge';
 
 export const PokemonDetailsPage: React.FC = () => {
     const { name } = useParams<{ name: string }>();
