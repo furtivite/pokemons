@@ -10,6 +10,8 @@ import { useGetPokemonListQuery } from "@api/pokemonApi";
 import { SearchBar } from "@components/SearchBar";
 import { PageSizeSelector } from "@components/PageSizeSelector";
 import { PaginationControl } from "@components/PaginationControl";
+import { Link } from "react-router-dom";
+import { LoadingSpinner } from "@components/LoadingSpinner";
 
 export const PokemonListPage: React.FC = () => {
     const [search, setSearch] = useState("");
@@ -30,9 +32,7 @@ export const PokemonListPage: React.FC = () => {
 
     if (isLoading) {
         return (
-            <Spinner animation="border" role="status">
-                <span className="visually-hidden">Loading...</span>
-            </Spinner>
+            <LoadingSpinner />
         );
     }
     if (error) {
@@ -55,8 +55,8 @@ export const PokemonListPage: React.FC = () => {
                     <PageSizeSelector
                         value={pageSize}
                         onChange={size => {
-                        setPageSize(size);
-                        setCurrentPage(1);
+                            setPageSize(size);
+                            setCurrentPage(1);
                         }}
                     />
                 </Col>
@@ -64,7 +64,14 @@ export const PokemonListPage: React.FC = () => {
 
             <ListGroup className="mb-3">
                 {filtered.map((pkm) => (
-                    <ListGroup.Item key={pkm.name}>{pkm.name}</ListGroup.Item>
+                    <ListGroup.Item
+                        key={pkm.name}
+                        action
+                        as={Link}
+                        to={`/pokemon/${pkm.name}`}
+                    >
+                        {pkm.name}
+                    </ListGroup.Item>
                 ))}
             </ListGroup>
 
