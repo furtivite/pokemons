@@ -3,13 +3,13 @@ import {
     Spinner,
     Alert,
     ListGroup,
-    Pagination,
     Row,
     Col,
 } from "react-bootstrap";
 import { useGetPokemonListQuery } from "@api/pokemonApi";
 import { SearchBar } from "@components/SearchBar";
 import { PageSizeSelector } from "@components/PageSizeSelector";
+import { PaginationControl } from "@components/PaginationControl";
 
 export const PokemonListPage: React.FC = () => {
     const [search, setSearch] = useState("");
@@ -99,21 +99,11 @@ export const PokemonListPage: React.FC = () => {
                 ))}
             </ListGroup>
 
-            <Pagination>
-                {getPageItems().map((item, idx) =>
-                    item === "ellipsis" ? (
-                        <Pagination.Ellipsis key={`e-${idx}`} disabled />
-                    ) : (
-                        <Pagination.Item
-                            key={item}
-                            active={item === currentPage}
-                            onClick={() => setCurrentPage(item)}
-                        >
-                            {item}
-                        </Pagination.Item>
-                    )
-                )}
-            </Pagination>
+            <PaginationControl
+                totalPages={totalPages}
+                currentPage={currentPage}
+                onPageChange={setCurrentPage}
+            />
         </>
     );
 };
