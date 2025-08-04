@@ -1,6 +1,6 @@
-import React from 'react';
-import { Container, Navbar, Nav } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Container } from "react-bootstrap";
+import { Header } from "@components/Header";
 
 interface LayoutProps {
     children: React.ReactNode
@@ -8,19 +8,7 @@ interface LayoutProps {
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => (
   <div className="d-flex flex-column min-vh-100">
-    <Navbar bg="light" expand="lg" className="sticky-top shadow-sm">
-      <Container>
-        <Navbar.Brand as={Link} to="/">
-          <img
-            src="/logo.svg"
-            width={269}
-            height={99}
-            className="d-inline-block align-top"
-            alt="Pokédex Logo"
-          />
-        </Navbar.Brand>
-      </Container>
-    </Navbar>
+    <Header />
 
     <main className="flex-grow-1 py-4">
       <Container>
