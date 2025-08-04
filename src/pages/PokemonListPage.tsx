@@ -12,7 +12,7 @@ import { SearchBar } from "@components/SearchBar";
 import { PageSizeSelector } from "@components/PageSizeSelector";
 import { PaginationControl } from "@components/PaginationControl";
 import { LoadingSpinner } from "@components/LoadingSpinner";
-import { selectSelectedPokemons, toggleSelected } from "@features/compare/compareSlice";
+import { MAX_COMPARE, selectSelectedPokemons, toggleSelected } from "@features/compare/compareSlice";
 import { useAppDispatch, useAppSelector } from "../store";
 
 export const PokemonListPage: React.FC = () => {
@@ -74,6 +74,7 @@ export const PokemonListPage: React.FC = () => {
                             type="checkbox"
                             className="me-3"
                             checked={selected.includes(pkm.name)}
+                            disabled={!selected.includes(pkm.name) && selected.length >= MAX_COMPARE}
                             onChange={() => dispatch(toggleSelected(pkm.name))}
                         />
                         <Link to={`/pokemon/${pkm.name}`}>{pkm.name}</Link>
