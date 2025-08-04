@@ -13,7 +13,6 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => (
 
     <main className="flex-grow-1 py-4">
       <Container>
-        <h1>Layout works</h1>
         {children}
       </Container>
     </main>
