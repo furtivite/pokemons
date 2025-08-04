@@ -10,37 +10,41 @@ export const Header: React.FC = () => {
   const selected = useAppSelector(selectSelectedPokemons);
   const dispatch = useAppDispatch();
 
-return (
-  <Navbar bg="light" expand="lg" className="sticky-top shadow-sm">
-    <Container>
-      <Navbar.Brand>
-        {pathname === '/' ? (
-          <Logo />
-        ) : (
-          <Link to="/">
+  return (
+    <Navbar bg="light" expand="lg" className="sticky-top shadow-sm">
+      <Container>
+        <Navbar.Brand>
+          {pathname === '/' ? (
             <Logo />
-          </Link>
+          ) : (
+            <Link to="/">
+              <Logo />
+            </Link>
+          )}
+        </Navbar.Brand>
+        {selected.length > 0 && (
+          <Nav className="ms-auto d-flex align-items-center gap-2">
+            {pathname !== '/compare' ? (
+                <Nav.Link
+                  as={Link}
+                  to="/compare"
+                  className="p-0"
+                >
+                  {selected.length} in Comparison
+                </Nav.Link>
+              ) : (
+                <div>{selected.length} in Comparison</div>
+            )}
+            <Button
+              variant="outline-danger"
+              size="sm"
+              onClick={() => dispatch(clearSelected())}
+            >
+              Clear Comparison
+            </Button>
+          </Nav>
         )}
-      </Navbar.Brand>
-      {selected.length > 0 && (
-        <Nav className="ms-auto d-flex align-items-center gap-2">
-          <Nav.Link
-            as={Link}
-            to="/compare"
-            className="p-0"
-          >
-            {selected.length} in Comparison 
-          </Nav.Link>
-          <Button
-            variant="outline-danger"
-            size="sm"
-            onClick={() => dispatch(clearSelected())}
-          >
-            Clear Comparison
-          </Button>
-        </Nav>
-      )}
-    </Container>
-  </Navbar>
+      </Container>
+    </Navbar>
   );
 };
