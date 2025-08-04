@@ -14,7 +14,8 @@
       "@components/*": ["components/*"],
       "@features/*": ["features/*"],
       "@api/*": ["api/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@pages/*": ["pages/*"]
     }
   },
   "include": ["src"],
