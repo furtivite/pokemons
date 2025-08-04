@@ -8,7 +8,7 @@ import { PokemonHeader } from '@components/PokemonHeader';
 import { PokemonStats } from '@components/PokemonStats';
 import { PokemonAbilities } from '@components/PokemonAbilities';
 import { useAppDispatch, useAppSelector } from '../store';
-import { selectSelectedPokemons, toggleSelected } from '@features/compare/compareSlice';
+import { MAX_COMPARE, selectSelectedPokemons, toggleSelected } from '@features/compare/compareSlice';
 
 export const PokemonDetailsPage: React.FC = () => {
     const { name } = useParams<{ name: string }>();
@@ -33,6 +33,7 @@ export const PokemonDetailsPage: React.FC = () => {
                         variant={isInCompare ? 'success' : 'outline-primary'}
                         checked={isInCompare}
                         value={name!}
+                        disabled={!isInCompare && selected.length >= MAX_COMPARE}
                         onChange={() => name && dispatch(toggleSelected(name))}
                     >
                         {isInCompare ? 'Added to Compare' : 'Add to Compare'}

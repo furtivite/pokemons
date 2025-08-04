@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../store';
 
+export const MAX_COMPARE = 4;
+
 interface CompareState {
     selected: string[];
 }
@@ -17,9 +19,9 @@ const compareSlice = createSlice({
             const name = action.payload;
             const idx = state.selected.indexOf(name);
             if (idx >= 0) {
-            state.selected.splice(idx, 1);
-            } else {
-            state.selected.push(name);
+                state.selected.splice(idx, 1);
+            } else if (state.selected.length < MAX_COMPARE) {
+                state.selected.push(name);
             }
         },
         clearSelected(state) {
