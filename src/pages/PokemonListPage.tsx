@@ -1,22 +1,27 @@
 import React, { useState } from "react";
 import {
-    Spinner,
     Alert,
     ListGroup,
     Row,
     Col,
+    Form,
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { useGetPokemonListQuery } from "@api/pokemonApi";
 import { SearchBar } from "@components/SearchBar";
 import { PageSizeSelector } from "@components/PageSizeSelector";
 import { PaginationControl } from "@components/PaginationControl";
-import { Link } from "react-router-dom";
 import { LoadingSpinner } from "@components/LoadingSpinner";
+import { selectSelectedPokemons, toggleSelected } from "@features/compare/compareSlice";
+import { useAppDispatch, useAppSelector } from "../store";
 
 export const PokemonListPage: React.FC = () => {
     const [search, setSearch] = useState("");
     const [pageSize, setPageSize] = useState(20);
     const [currentPage, setCurrentPage] = useState(1);
+
+    const dispatch = useAppDispatch();
+    const selected = useAppSelector(selectSelectedPokemons);
 
     const offset = (currentPage - 1) * pageSize;
     const { data, error, isLoading } = useGetPokemonListQuery({
@@ -64,13 +69,14 @@ export const PokemonListPage: React.FC = () => {
 
             <ListGroup className="mb-3">
                 {filtered.map((pkm) => (
-                    <ListGroup.Item
-                        key={pkm.name}
-                        action
-                        as={Link}
-                        to={`/pokemon/${pkm.name}`}
-                    >
-                        {pkm.name}
+                    <ListGroup.Item key={pkm.name} className="d-flex align-items-center">
+                        <Form.Check
+                            type="checkbox"
+                            className="me-3"
+                            checked={selected.includes(pkm.name)}
+                            onChange={() => dispatch(toggleSelected(pkm.name))}
+                        />
+                        <Link to={`/pokemon/${pkm.name}`}>{pkm.name}</Link>
                     </ListGroup.Item>
                 ))}
             </ListGroup>

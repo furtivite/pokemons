@@ -6,7 +6,7 @@ export const BackButton: React.FC = () => {
     const navigate = useNavigate();
     
     return (
-        <Button variant="secondary" className="mb-4" onClick={() => navigate(-1)}>
+        <Button variant="secondary" onClick={() => navigate(-1)}>
             &larr; Back
         </Button>
     );
