@@ -7,6 +7,7 @@ import App from "./App";
 import store from "./store";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
 
 const rootElement = document.getElementById("root");
 if (!rootElement) throw new Error("Failed to find root element");

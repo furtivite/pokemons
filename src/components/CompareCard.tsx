@@ -1,7 +1,9 @@
 import React from 'react';
-import { Card, Badge, ProgressBar, Alert } from 'react-bootstrap';
+import { Card, Badge, ProgressBar, Alert, Button } from 'react-bootstrap';
 import { useGetPokemonByNameQuery } from '@api/pokemonApi';
 import { LoadingSpinner } from '@components/LoadingSpinner';
+import { toggleSelected } from '@features/compare/compareSlice';
+import { useAppDispatch } from '../store';
 
 interface CompareCardProps {
     name: string;
@@ -9,6 +11,7 @@ interface CompareCardProps {
 
 export const CompareCard: React.FC<CompareCardProps> = ({ name }) => {
     const { data: pokemon, isLoading, error } = useGetPokemonByNameQuery(name);
+    const dispatch = useAppDispatch();
 
     if (isLoading) {
         return <LoadingSpinner className="d-block mx-auto my-3" />;
@@ -18,7 +21,16 @@ export const CompareCard: React.FC<CompareCardProps> = ({ name }) => {
     }
 
     return (
-        <Card className="mb-3">
+        <Card className="mb-3 mw-lg-50">
+            <Card.Header className="d-flex justify-content-end p-2">
+                <Button
+                    variant="outline-danger"
+                    size="sm"
+                    onClick={() => dispatch(toggleSelected(name))}
+                >
+                    Remove
+                </Button>
+            </Card.Header>
             <Card.Img variant="top" src={pokemon.sprites.front_default} />
             <Card.Body>
                 <Card.Title className="text-capitalize">{pokemon.name}</Card.Title>
