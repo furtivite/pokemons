@@ -1,10 +1,12 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { pokemonApi } from '../api/pokemonApi';
 import pokemonReducer from '../features/pokemon/pokemonSlice';
+import compareReducer from '../features/compare/compareSlice';
 
 const rootReducer = combineReducers({
   pokemon: pokemonReducer,
   [pokemonApi.reducerPath]: pokemonApi.reducer,
+  compare: compareReducer,
 });
 
 const store = configureStore({
