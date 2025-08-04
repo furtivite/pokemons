@@ -3,12 +3,13 @@ import {
     Spinner,
     Alert,
     ListGroup,
-    Form,
     Pagination,
     Row,
     Col,
 } from "react-bootstrap";
 import { useGetPokemonListQuery } from "@api/pokemonApi";
+import { SearchBar } from "@components/SearchBar";
+import { PageSizeSelector } from "@components/PageSizeSelector";
 
 export const PokemonListPage: React.FC = () => {
     const [search, setSearch] = useState("");
@@ -73,30 +74,22 @@ export const PokemonListPage: React.FC = () => {
         <>
             <Row className="gx-3 mb-3 align-items-center">
                 <Col>
-                    <Form.Control
-                        type="text"
-                        placeholder="Search Pokémon"
+                    <SearchBar
                         value={search}
-                        onChange={(e) => {
-                        setSearch(e.target.value);
-                        setCurrentPage(1);
+                        onChange={val => {
+                            setSearch(val);
+                            setCurrentPage(1);
                         }}
                     />
                 </Col>
                 <Col xs="auto">
-                    <Form.Select
+                    <PageSizeSelector
                         value={pageSize}
-                        onChange={(e) => {
-                        setPageSize(+e.target.value);
+                        onChange={size => {
+                        setPageSize(size);
                         setCurrentPage(1);
                         }}
-                    >
-                        {[10, 20, 50, 100].map((n) => (
-                            <option key={n} value={n}>
-                            {n} per page
-                            </option>
-                        ))}
-                    </Form.Select>
+                    />
                 </Col>
             </Row>
 
