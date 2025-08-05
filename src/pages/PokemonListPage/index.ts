@@ -1,1 +1,1 @@
-export { PokemonListPage as default} from './PokemonListPage';
+export { PokemonListPage as default } from './PokemonListPage';

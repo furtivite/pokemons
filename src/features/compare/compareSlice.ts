@@ -7,11 +7,11 @@ const saved = localStorage.getItem('compareSelected');
 const initialSelected: string[] = saved ? JSON.parse(saved) : [];
 
 interface CompareState {
-    selected: string[];
+  selected: string[];
 }
 
 const initialState: CompareState = {
-    selected: initialSelected,
+  selected: initialSelected,
 };
 
 const compareSlice = createSlice({
@@ -19,16 +19,16 @@ const compareSlice = createSlice({
   initialState,
   reducers: {
     toggleSelected(state, action: PayloadAction<string>) {
-        const name = action.payload;
-        const idx = state.selected.indexOf(name);
-        if (idx >= 0) {
-            state.selected.splice(idx, 1);
-        } else if (state.selected.length < MAX_COMPARE) {
-            state.selected.push(name);
-        }
+      const name = action.payload;
+      const idx = state.selected.indexOf(name);
+      if (idx >= 0) {
+        state.selected.splice(idx, 1);
+      } else if (state.selected.length < MAX_COMPARE) {
+        state.selected.push(name);
+      }
     },
     clearSelected(state) {
-        state.selected = [];
+      state.selected = [];
     },
   },
 });

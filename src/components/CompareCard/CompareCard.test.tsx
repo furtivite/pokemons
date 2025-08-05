@@ -1,8 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import {
-  useGetPokemonByNameQuery,
-  useGetAbilityByNameQuery,
-} from '@api/pokemonApi';
+import { useGetPokemonByNameQuery, useGetAbilityByNameQuery } from '@api/pokemonApi';
 import { useAppDispatch } from '@store';
 import { CompareCard } from '@components/CompareCard';
 import { toggleSelected } from '@features/compare/compareSlice';
@@ -62,9 +59,7 @@ describe('CompareCard component', () => {
       error: false,
     });
     render(<CompareCard name="bulbasaur" />);
-    expect(
-      screen.getByRole('img', { name: /bulbasaur/i })
-    ).toHaveAttribute('src', 'bulba.png');
+    expect(screen.getByRole('img', { name: /bulbasaur/i })).toHaveAttribute('src', 'bulba.png');
     expect(screen.getByText(/grass/i)).toBeInTheDocument();
     expect(screen.getByText(/hp:/i)).toBeInTheDocument();
     expect(screen.getByText('45')).toBeInTheDocument();
@@ -79,9 +74,7 @@ describe('CompareCard component', () => {
       error: false,
     });
     render(<CompareCard name="bulbasaur" />);
-    fireEvent.click(
-      screen.getByLabelText(/remove bulbasaur from comparison/i)
-    );
+    fireEvent.click(screen.getByLabelText(/remove bulbasaur from comparison/i));
     expect(dispatchMock).toHaveBeenCalledWith(toggleSelected('bulbasaur'));
   });
 });

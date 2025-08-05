@@ -1,7 +1,7 @@
 @media (min-width: 992px) {
-    .mw-lg-50 {
-        max-width: 50dvw !important;
-    }
+  .mw-lg-50 {
+    max-width: 50dvw !important;
+  }
 }
 
 /* Header menu toggler */

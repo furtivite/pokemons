@@ -7,12 +7,12 @@ import { PokemonCard } from './PokemonCard';
 
 jest.mock('@api/pokemonApi', () => ({
   useGetPokemonByNameQuery: jest.fn(),
-  useGetAbilityByNameQuery: jest.fn()
+  useGetAbilityByNameQuery: jest.fn(),
 }));
 
 jest.mock('@store', () => ({
   useAppDispatch: jest.fn(),
-  useAppSelector: jest.fn()
+  useAppSelector: jest.fn(),
 }));
 
 const mockNavigate = jest.fn();
@@ -30,7 +30,7 @@ describe('PokemonCard component', () => {
     sprites: { front_default: 'url' },
     types: [{ slot: 1, type: { name: 'electric' } }],
     stats: [],
-    abilities: [{ ability: { name: 'static' }, is_hidden: false }]
+    abilities: [{ ability: { name: 'static' }, is_hidden: false }],
   };
 
   beforeEach(() => {
@@ -42,12 +42,12 @@ describe('PokemonCard component', () => {
     (useGetPokemonByNameQuery as jest.Mock).mockReturnValue({
       data: undefined,
       isLoading: true,
-      error: undefined
+      error: undefined,
     });
     (useGetAbilityByNameQuery as jest.Mock).mockReturnValue({
       data: { effect_entries: [{ language: { name: 'en' }, short_effect: 'effect' }] },
       isLoading: false,
-      error: undefined
+      error: undefined,
     });
   });
 
@@ -55,7 +55,7 @@ describe('PokemonCard component', () => {
     render(
       <BrowserRouter>
         <PokemonCard name="pikachu" />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
     expect(screen.getByRole('status')).toBeInTheDocument();
   });
@@ -64,12 +64,12 @@ describe('PokemonCard component', () => {
     (useGetPokemonByNameQuery as jest.Mock).mockReturnValue({
       data: undefined,
       isLoading: false,
-      error: true
+      error: true,
     });
     render(
       <BrowserRouter>
         <PokemonCard name="pikachu" />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
     expect(screen.getByText(/error loading pikachu/i)).toBeInTheDocument();
   });
@@ -78,12 +78,12 @@ describe('PokemonCard component', () => {
     (useGetPokemonByNameQuery as jest.Mock).mockReturnValue({
       data: samplePokemon,
       isLoading: false,
-      error: false
+      error: false,
     });
     render(
       <BrowserRouter>
         <PokemonCard name="pikachu" />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
     expect(screen.getByAltText(/pikachu/i)).toHaveAttribute('src', 'url');
     expect(screen.getByRole('link', { name: /pikachu/i })).toBeInTheDocument();
@@ -95,12 +95,12 @@ describe('PokemonCard component', () => {
     (useGetPokemonByNameQuery as jest.Mock).mockReturnValue({
       data: samplePokemon,
       isLoading: false,
-      error: false
+      error: false,
     });
     render(
       <BrowserRouter>
         <PokemonCard name="pikachu" />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
     const card = screen.getByRole('group');
     fireEvent.keyDown(card, { key: 'Enter' });
@@ -113,12 +113,12 @@ describe('PokemonCard component', () => {
     (useGetPokemonByNameQuery as jest.Mock).mockReturnValue({
       data: samplePokemon,
       isLoading: false,
-      error: false
+      error: false,
     });
     render(
       <BrowserRouter>
         <PokemonCard name="pikachu" />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
     const card = screen.getByRole('group');
     fireEvent.keyDown(card, { key: ' ' });
@@ -131,12 +131,12 @@ describe('PokemonCard component', () => {
     (useGetPokemonByNameQuery as jest.Mock).mockReturnValue({
       data: samplePokemon,
       isLoading: false,
-      error: false
+      error: false,
     });
     render(
       <BrowserRouter>
         <PokemonCard name="pikachu" />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
     const checkbox = screen.getByRole('checkbox');
     fireEvent.click(checkbox);

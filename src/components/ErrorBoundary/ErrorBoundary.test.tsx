@@ -13,7 +13,7 @@ describe('ErrorBoundary component', () => {
     render(
       <ErrorBoundary>
         <div>All good</div>
-      </ErrorBoundary>
+      </ErrorBoundary>,
     );
     expect(screen.getByText('All good')).toBeInTheDocument();
   });
@@ -25,12 +25,10 @@ describe('ErrorBoundary component', () => {
     render(
       <ErrorBoundary>
         <Problem />
-      </ErrorBoundary>
+      </ErrorBoundary>,
     );
     expect(screen.getByText('Something went wrong.')).toBeInTheDocument();
-    expect(
-      screen.getByText("We're sorry — an unexpected error occurred.")
-    ).toBeInTheDocument();
+    expect(screen.getByText("We're sorry — an unexpected error occurred.")).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /try again/i })).toBeInTheDocument();
   });
 
@@ -44,7 +42,7 @@ describe('ErrorBoundary component', () => {
     render(
       <ErrorBoundary>
         <Problem />
-      </ErrorBoundary>
+      </ErrorBoundary>,
     );
 
     expect(screen.getByText('Something went wrong.')).toBeInTheDocument();

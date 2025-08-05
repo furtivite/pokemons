@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Container, ToastContainer } from "react-bootstrap";
-import { Header } from "@components/Header";
-import { Footer } from "@components/Footer";
-import { LayoutToast } from "@components/LayoutToast";
-import { MAX_COMPARE, selectSelectedPokemons } from "@features/compare/compareSlice";
-import { useAppSelector } from "@store";
+import React, { useEffect, useRef, useState } from 'react';
+import { Container, ToastContainer } from 'react-bootstrap';
+import { Header } from '@components/Header';
+import { Footer } from '@components/Footer';
+import { LayoutToast } from '@components/LayoutToast';
+import { MAX_COMPARE, selectSelectedPokemons } from '@features/compare/compareSlice';
+import { useAppSelector } from '@store';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -13,9 +13,7 @@ interface LayoutProps {
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const selected = useAppSelector(selectSelectedPokemons);
   const prevRef = useRef<string[]>([]);
-  const [toasts, setToasts] = useState<
-    { id: number; bg: string; title: string; text: string }[]
-  >([]);
+  const [toasts, setToasts] = useState<{ id: number; bg: string; title: string; text: string }[]>([]);
 
   useEffect(() => {
     const prev = prevRef.current;
@@ -28,8 +26,8 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
           ...t,
           {
             id: Date.now(),
-            bg: "success",
-            title: "Added to Comparison",
+            bg: 'success',
+            title: 'Added to Comparison',
             text: `You added ${added} to comparison`,
           },
         ]);
@@ -41,8 +39,8 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             ...t,
             {
               id: Date.now() + 1,
-              bg: "warning",
-              title: "Limit Reached",
+              bg: 'warning',
+              title: 'Limit Reached',
               text: `You have reached the maximum of ${MAX_COMPARE} Pokémon for comparison`,
             },
           ]);
@@ -55,8 +53,8 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
           ...t,
           {
             id: Date.now(),
-            bg: "warning",
-            title: "Removed from Comparison",
+            bg: 'warning',
+            title: 'Removed from Comparison',
             text: `You removed ${removed} from comparison`,
           },
         ]);
@@ -77,16 +75,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         <Container fluid="sm">
           <ToastContainer position="top-end" className="p-3">
             {toasts.map(({ id, bg, title, text }) => (
-              <LayoutToast
-                key={id}
-                bg={bg}
-                title={title}
-                text={text}
-                show={true}
-                onClose={() =>
-                  setToasts((t) => t.filter((toast) => toast.id !== id))
-                }
-              />
+              <LayoutToast key={id} bg={bg} title={title} text={text} show={true} onClose={() => setToasts((t) => t.filter((toast) => toast.id !== id))} />
             ))}
           </ToastContainer>
           {children}
