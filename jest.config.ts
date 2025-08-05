@@ -11,8 +11,9 @@ const config: Config.InitialOptions = {
   transform: {
     '^.+\\.(t|j)sx?$': 'ts-jest',
   },
+
   transformIgnorePatterns: [
-    '/node_modules/(?!(react-loading-skeleton)/)'
+    'node_modules/(?!(react-loading-skeleton)/)'
   ],
 
   moduleNameMapper: {
@@ -22,7 +23,7 @@ const config: Config.InitialOptions = {
     '^@features/(.*)$': '<rootDir>/src/features/$1',
     '^@theme/(.*)$': '<rootDir>/src/theme/$1',
     '^@store$': '<rootDir>/src/store',
-    '\\.(css|scss|sass)$': '<rootDir>/__mocks__/styleMock.js',
+    '\\.(css|scss|sass)$': 'identity-obj-proxy',
     '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/__mocks__/fileMock.js',
   },
 

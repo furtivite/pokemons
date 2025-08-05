@@ -4,7 +4,7 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 export const PokemonDetailsSkeleton: React.FC = () => (
-  <Container fluid="sm" className="py-4">
+  <Container fluid="sm" className="py-4" data-testid="pokemon-details-skeleton">
     <Row>
       <Col xs={12} md={4} className="text-center mb-4">
         <Skeleton circle height={150} width={150} className="mx-auto mb-3" />
