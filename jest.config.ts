@@ -17,6 +17,7 @@ const config: Config.InitialOptions = {
   ],
 
   moduleNameMapper: {
+    '^@api/pokemonApi$': '<rootDir>/__mocks__/@api/pokemonApi.ts',
     '^@components/(.*)$': '<rootDir>/src/components/$1',
     '^@pages/(.*)$': '<rootDir>/src/pages/$1',
     '^@api/(.*)$': '<rootDir>/src/api/$1',
