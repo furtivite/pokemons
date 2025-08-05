@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
-import { FaMoon, FaSun } from 'react-icons/fa';
+import { FaMoon, FaSun, FaBars, FaTimes } from 'react-icons/fa';
 import { ThemeContext } from '@theme/ThemeContext';
 import { Logo } from "@components/Logo";
 import { selectSelectedPokemons, clearSelected } from '@features/compare/compareSlice';
@@ -12,6 +12,7 @@ export const Header: React.FC = () => {
   const selected = useAppSelector(selectSelectedPokemons);
   const dispatch = useAppDispatch();
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const [expanded, setExpanded] = useState(false);
 
   return (
     <header>
@@ -25,7 +26,15 @@ export const Header: React.FC = () => {
           <Navbar.Brand as={Link} to="/">
             <Logo />
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="main-navbar" />
+          <Button
+            variant="link"
+            className="navbar-toggler custom-toggler"
+            aria-controls="main-navbar"
+            aria-expanded={expanded}
+            onClick={() => setExpanded((v) => !v)}
+          >
+            {expanded ? <FaTimes size={24}/> : <FaBars size={24}/>}
+          </Button>
           <Navbar.Collapse id="main-navbar" className="justify-content-end">
             <Nav className="d-flex align-items-center gap-2">
               {selected.length > 0 && (
