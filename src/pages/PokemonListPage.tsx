@@ -47,7 +47,7 @@ export const PokemonListPage: React.FC = () => {
     return (
         <>
             <Row className="gx-3 mb-3 align-items-center">
-                <Col>
+                <Col xs={12} sm={8}>
                     <SearchBar
                         value={search}
                         onChange={val => {
@@ -56,7 +56,7 @@ export const PokemonListPage: React.FC = () => {
                         }}
                     />
                 </Col>
-                <Col xs="auto">
+                <Col xs={12} sm={4} className="mt-2 mt-sm-0">
                     <PageSizeSelector
                         value={pageSize}
                         onChange={size => {
