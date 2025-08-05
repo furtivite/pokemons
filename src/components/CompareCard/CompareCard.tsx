@@ -5,7 +5,6 @@ import { LoadingSpinner } from '@components/LoadingSpinner';
 import { AbilityBadge } from '@components/AbilityBadge';
 import { toggleSelected } from '@features/compare/compareSlice';
 import { useAppDispatch } from '@store';
-import { Pokemon } from '@api/pokemonApi';
 
 interface CompareCardProps {
     name: string;
