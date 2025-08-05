@@ -14,6 +14,7 @@ export const LayoutToast: React.FC<LayoutToastProps> = ({bg, title, text, show, 
             show={show}
             delay={3000}
             autohide
+            tabIndex={0}
         >
             <Toast.Header>
                 <strong className="me-auto">{title}</strong>

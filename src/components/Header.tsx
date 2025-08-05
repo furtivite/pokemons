@@ -14,54 +14,57 @@ export const Header: React.FC = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
-    <Navbar
-      bg={theme}
-      variant={theme}
-      expand="lg"
-      className="sticky-top shadow-sm"
-    >
-      <Container fluid="sm">
-        <Navbar.Brand>
-          {pathname === '/' ? (
-            <Logo />
-          ) : (
-            <Link to="/">
+    <header>
+      <Navbar
+        bg={theme}
+        variant={theme}
+        expand="lg"
+        className="sticky-top shadow-sm"
+      >
+        <Container fluid="sm">
+          <Navbar.Brand>
+            {pathname === '/' ? (
               <Logo />
-            </Link>
-          )}
-        </Navbar.Brand>
-        {selected.length > 0 && (
-          <Nav className="ms-auto d-flex align-items-center gap-2">
-            {pathname !== '/compare' ? (
-                <Nav.Link
-                  as={Link}
-                  to="/compare"
-                  className="p-0"
-                >
-                  {selected.length} in Comparison
-                </Nav.Link>
-              ) : (
-                <div>{selected.length} in Comparison</div>
+            ) : (
+              <Link to="/">
+                <Logo />
+              </Link>
             )}
-            <Button
-              variant="outline-danger"
-              size="sm"
-              onClick={() => dispatch(clearSelected())}
-            >
-              Clear Comparison
-            </Button>
-          </Nav>
-        )}
-        <Button
-          variant="outline-secondary"
-          size="sm"
-          className="ms-2"
-          onClick={toggleTheme}
-          aria-label="Toggle theme"
-        >
-          {theme === 'light' ? <FaMoon /> : <FaSun />}
-        </Button>
-      </Container>
-    </Navbar>
+          </Navbar.Brand>
+          {selected.length > 0 && (
+            <Nav className="ms-auto d-flex align-items-center gap-2">
+              {pathname !== '/compare' ? (
+                  <Nav.Link
+                    as={Link}
+                    to="/compare"
+                    className="p-0"
+                  >
+                    {selected.length} in Comparison
+                  </Nav.Link>
+                ) : (
+                  <div>{selected.length} in Comparison</div>
+              )}
+              <Button
+                variant="outline-danger"
+                size="sm"
+                onClick={() => dispatch(clearSelected())}
+                aria-label="Clear all comparisons"
+              >
+                Clear Comparison
+              </Button>
+            </Nav>
+          )}
+          <Button
+            variant="outline-secondary"
+            size="sm"
+            className="ms-2"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+          >
+            {theme === 'light' ? <FaMoon /> : <FaSun />}
+          </Button>
+        </Container>
+      </Navbar>
+    </header>
   );
 };

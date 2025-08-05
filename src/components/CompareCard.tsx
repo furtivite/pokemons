@@ -27,6 +27,7 @@ export const CompareCard: React.FC<CompareCardProps> = ({ name }) => {
                     variant="outline-danger"
                     size="sm"
                     onClick={() => dispatch(toggleSelected(name))}
+                    aria-label="Remove from comparison"
                 >
                     Remove
                 </Button>

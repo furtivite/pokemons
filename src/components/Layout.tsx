@@ -25,9 +25,15 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return(
     <div className="d-flex flex-column min-vh-100">
+      <a
+        href="#main-content"
+        className="visually-hidden-focusable"
+      >
+        Skip to content
+      </a>
       <Header />
 
-      <main className="flex-grow-1 py-4">
+      <main id="main-content" className="flex-grow-1 py-4">
         <Container fluid="sm">
           <LayoutToast 
             bg="warning" 
