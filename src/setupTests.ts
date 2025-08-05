@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom';
-import { TextEncoder } from 'util';
 
 global.fetch = jest.fn();
-global.TextEncoder = TextEncoder;
+// Polyfill TextEncoder in Jest (needed by react-router-dom)
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+global.TextEncoder = require('util').TextEncoder;
