@@ -6,7 +6,7 @@ import { BackButton } from '@components/BackButton';
 import { PokemonHeader } from '@components/PokemonHeader';
 import { PokemonStats } from '@components/PokemonStats';
 import { PokemonAbilities } from '@components/PokemonAbilities';
-import { useAppDispatch, useAppSelector } from '../store';
+import { useAppDispatch, useAppSelector } from '@store';
 import { MAX_COMPARE, selectSelectedPokemons, toggleSelected } from '@features/compare/compareSlice';
 import { PokemonDetailsSkeleton } from '@components/PokemonDetailsSkeleton';
 

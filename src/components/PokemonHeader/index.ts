@@ -1,0 +1,1 @@
+export { PokemonHeader } from './PokemonHeader';

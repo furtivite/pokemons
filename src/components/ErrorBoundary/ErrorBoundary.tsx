@@ -6,8 +6,8 @@ interface State {
   error?: Error;
 }
 
-export class ErrorBoundary extends React.Component<React.PropsWithChildren<{}>, State> {
-  constructor(props: React.PropsWithChildren<{}>) {
+export class ErrorBoundary extends React.Component<React.PropsWithChildren<unknown>, State> {
+  constructor(props: React.PropsWithChildren<unknown>) {
     super(props);
     this.state = { hasError: false };
   }
@@ -30,7 +30,7 @@ export class ErrorBoundary extends React.Component<React.PropsWithChildren<{}>, 
       return (
         <Container className="py-5 text-center">
           <h1>Something went wrong.</h1>
-          <p>We're sorry — an unexpected error occurred.</p>
+          <p>We&apos;re sorry — an unexpected error occurred.</p>
           <Button variant="primary" onClick={this.handleReload}>
             Try again
           </Button>

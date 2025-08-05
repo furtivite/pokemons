@@ -4,7 +4,7 @@ import { Header } from "@components/Header";
 import { Footer } from "@components/Footer";
 import { LayoutToast } from "@components/LayoutToast";
 import { MAX_COMPARE, selectSelectedPokemons } from "@features/compare/compareSlice";
-import { useAppSelector } from "../store";
+import { useAppSelector } from "@store";
 
 interface LayoutProps {
   children: React.ReactNode;

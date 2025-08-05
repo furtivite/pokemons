@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert, Container, Row, Col } from 'react-bootstrap';
 import { selectSelectedPokemons } from '@features/compare/compareSlice';
-import { useAppSelector } from '../store';
+import { useAppSelector } from '@store';
 import { CompareCard } from '@components/CompareCard';
 
 const ComparePage: React.FC = () => {
