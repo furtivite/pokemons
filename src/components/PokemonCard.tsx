@@ -48,6 +48,7 @@ export const PokemonCard: React.FC<PokemonCardProps> = ({ name }) => {
                 src={pokemon.sprites.front_default}
                 alt={pokemon.name}
                 className="p-3"
+                loading="lazy"
             />
             <Card.Body className="d-flex flex-column">
                 <div className="d-flex justify-content-between align-items-start mb-2">

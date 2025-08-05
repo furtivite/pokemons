@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from '../store';
 import { MAX_COMPARE, selectSelectedPokemons, toggleSelected } from '@features/compare/compareSlice';
 import { PokemonDetailsSkeleton } from '@components/PokemonDetailsSkeleton';
 
-export const PokemonDetailsPage: React.FC = () => {
+const PokemonDetailsPage: React.FC = () => {
     const { name } = useParams<{ name: string }>();
     const { data: pokemon, error, isLoading } = useGetPokemonByNameQuery(name || '');
 
@@ -70,3 +70,5 @@ export const PokemonDetailsPage: React.FC = () => {
         </Container>
     );
 };
+
+export default PokemonDetailsPage;

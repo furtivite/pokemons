@@ -4,7 +4,7 @@ import { selectSelectedPokemons } from '@features/compare/compareSlice';
 import { useAppSelector } from '../store';
 import { CompareCard } from '@components/CompareCard';
 
-export const ComparePage: React.FC = () => {
+const ComparePage: React.FC = () => {
   const selected = useAppSelector(selectSelectedPokemons);
 
   if (selected.length === 0) {
@@ -34,3 +34,5 @@ export const ComparePage: React.FC = () => {
     </Container>
   );
 };
+
+export default ComparePage;

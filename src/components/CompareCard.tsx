@@ -40,7 +40,7 @@ export const CompareCard: React.FC<CompareCardProps> = ({ name }) => {
                     Remove
                 </Button>
             </Card.Header>
-            <Card.Img variant="top" src={pokemon.sprites.front_default} />
+            <Card.Img variant="top" src={pokemon.sprites.front_default} loading="lazy" />
             <Card.Body>
                 <Card.Title className="text-capitalize">{pokemon.name}</Card.Title>
 
