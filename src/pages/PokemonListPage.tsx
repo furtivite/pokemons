@@ -8,8 +8,8 @@ import { useGetPokemonListQuery } from "@api/pokemonApi";
 import { SearchBar } from "@components/SearchBar";
 import { PageSizeSelector } from "@components/PageSizeSelector";
 import { PaginationControl } from "@components/PaginationControl";
-import { LoadingSpinner } from "@components/LoadingSpinner";
 import { PokemonCard } from "@components/PokemonCard";
+import { PokemonCardSkeleton } from "@components/PokemonCardSkeleton";
 
 export const PokemonListPage: React.FC = () => {
     const [search, setSearch] = useState("");
@@ -30,7 +30,13 @@ export const PokemonListPage: React.FC = () => {
 
     if (isLoading) {
         return (
-            <LoadingSpinner />
+            <Row className="gx-3 gy-4 mb-4">
+                {Array.from({ length: 8 }).map((_, idx) => (
+                <Col key={idx} xs={12} sm={6} md={4} lg={3}>
+                    <PokemonCardSkeleton />
+                </Col>
+                ))}
+            </Row>
         );
     }
     if (error) {
