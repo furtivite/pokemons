@@ -9,7 +9,7 @@ interface PokemonHeaderProps {
 
 export const PokemonHeader: React.FC<PokemonHeaderProps> = ({ name, spriteUrl, types }) => (
     <Col xs={12} md={4} className="text-center mb-4">
-        <img src={spriteUrl} alt={name} className="img-fluid" />
+        <img src={spriteUrl} alt={name} className="img-fluid" loading="lazy" />
         <h1 className="text-capitalize mt-3 h2">{name}</h1>
         <div>
             {types.map((t) => (

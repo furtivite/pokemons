@@ -11,12 +11,15 @@ export const AbilityBadge: React.FC<{ name: string }> = ({ name }) => {
     return (
         <OverlayTrigger
             placement="top"
+            trigger={['hover', 'focus']}
             overlay={<Tooltip id={`tooltip-${name}`}>{effect}</Tooltip>}
         >
             <Badge
                 bg="info"
+                tabIndex={0}
                 className="me-2 text-capitalize"
                 style={{ cursor: 'pointer' }}
+                aria-describedby={`tooltip-${name}`}
             >
                 {name}
             </Badge>

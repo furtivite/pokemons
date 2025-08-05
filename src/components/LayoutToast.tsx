@@ -1,5 +1,5 @@
 import React from "react";
-import { Toast, ToastContainer, ToastProps } from "react-bootstrap";
+import { Toast, ToastProps } from "react-bootstrap";
 
 interface LayoutToastProps extends ToastProps {
     title: string,
@@ -7,20 +7,20 @@ interface LayoutToastProps extends ToastProps {
 }
 
 export const LayoutToast: React.FC<LayoutToastProps> = ({bg, title, text, show, onClose}) => (
-    <ToastContainer position="top-end" className="p-3">
-        <Toast
-            bg={bg}
-            onClose={onClose}
-            show={show}
-            delay={3000}
-            autohide
-        >
-            <Toast.Header>
-                <strong className="me-auto">{title}</strong>
-            </Toast.Header>
-            <Toast.Body className="text-dark">
-                {text}
-            </Toast.Body>
-        </Toast>
-    </ToastContainer>
+    <Toast
+        bg={bg}
+        onClose={onClose}
+        show={show}
+        delay={3000}
+        autohide
+        tabIndex={0}
+        className="mb-2"
+    >
+        <Toast.Header>
+            <strong className="me-auto">{title}</strong>
+        </Toast.Header>
+        <Toast.Body className="text-dark" role="status" aria-live="polite">
+            {text}
+        </Toast.Body>
+    </Toast>
 )

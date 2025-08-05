@@ -18,6 +18,8 @@ module.exports = {
       '@api': path.resolve(__dirname, 'src/api/'),
       '@utils': path.resolve(__dirname, 'src/utils/'),
       '@pages': path.resolve(__dirname, 'src/pages/'),
+      '@theme': path.resolve(__dirname, 'src/theme/'),
+      '@store': path.resolve(__dirname, 'src/store/'),
     }
   },
   module: {

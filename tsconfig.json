@@ -15,7 +15,9 @@
       "@features/*": ["features/*"],
       "@api/*": ["api/*"],
       "@utils/*": ["utils/*"],
-      "@pages/*": ["pages/*"]
+      "@pages/*": ["pages/*"],
+      "@theme/*": ["theme/*"],
+      "@store/*": ["store/*"]
     }
   },
   "include": ["src"],

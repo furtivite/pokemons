@@ -3,3 +3,21 @@
         max-width: 50dvw !important;
     }
 }
+
+/* Header menu toggler */
+.custom-toggler .navbar-toggler-icon {
+  background-image: none !important;
+  width: 0 !important;
+  border: none !important;
+}
+
+.custom-toggler {
+  padding: 0.25rem;
+  border: none;
+}
+
+.custom-toggler svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--bs-body-color);
+}

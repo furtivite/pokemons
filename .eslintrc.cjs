@@ -4,9 +4,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2020,
     sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true,
-    },
+    ecmaFeatures: { jsx: true },
   },
   env: {
     browser: true,
@@ -14,9 +12,7 @@ module.exports = {
     es6: true,
   },
   settings: {
-    react: {
-      version: 'detect',
-    },
+    react: { version: 'detect' },
   },
   extends: [
     'eslint:recommended',
@@ -27,7 +23,6 @@ module.exports = {
   ],
   plugins: ['react', 'react-hooks', '@typescript-eslint'],
   rules: {
-    // You can customize rules here
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],

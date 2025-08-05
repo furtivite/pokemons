@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, Badge, ProgressBar, Alert, Button } from 'react-bootstrap';
 import { useGetPokemonByNameQuery } from '@api/pokemonApi';
 import { LoadingSpinner } from '@components/LoadingSpinner';
+import { AbilityBadge } from '@components/AbilityBadge';
 import { toggleSelected } from '@features/compare/compareSlice';
 import { useAppDispatch } from '../store';
 
@@ -22,16 +23,24 @@ export const CompareCard: React.FC<CompareCardProps> = ({ name }) => {
 
     return (
         <Card className="mb-3 mw-lg-50">
-            <Card.Header className="d-flex justify-content-end p-2">
+            <Card.Header className="d-flex justify-content-end p-2" role="group" aria-label={`Comparison controls for ${name}`}>
                 <Button
                     variant="outline-danger"
                     size="sm"
+                    tabIndex={0}
                     onClick={() => dispatch(toggleSelected(name))}
+                    onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        dispatch(toggleSelected(name));
+                    }
+                    }}
+                    aria-label={`Remove ${name} from comparison`}
                 >
                     Remove
                 </Button>
             </Card.Header>
-            <Card.Img variant="top" src={pokemon.sprites.front_default} />
+            <Card.Img variant="top" src={pokemon.sprites.front_default} loading="lazy" />
             <Card.Body>
                 <Card.Title className="text-capitalize">{pokemon.name}</Card.Title>
 
@@ -60,13 +69,7 @@ export const CompareCard: React.FC<CompareCardProps> = ({ name }) => {
 
                 <div>
                     {pokemon.abilities.map((ab) => (
-                        <Badge
-                            bg="info"
-                            key={ab.ability.name}
-                            className="me-1 text-capitalize"
-                        >
-                            {ab.ability.name}
-                        </Badge>
+                        <AbilityBadge key={ab.ability.name} name={ab.ability.name} />
                     ))}
                 </div>
             </Card.Body>

@@ -34,18 +34,29 @@ export const PaginationControl: React.FC<PaginationControlProps> = ({
 
     return (
         <Pagination>
-            {getPageItems().map((item, idx) => item === "ellipsis" ? (
-                <Pagination.Ellipsis key={`e-${idx}`} disabled />
-            ) : (
-                <Pagination.Item
-                    key={item}
-                    active={item === currentPage}
-                    onClick={() => onPageChange(item)}
-                >
-                    {item}
-                </Pagination.Item>
-            )
+            <Pagination.Prev
+                className="me-2"
+                disabled={currentPage === 1}
+                onClick={() => onPageChange(currentPage - 1)}
+            />
+            {getPageItems().map((item, idx) =>
+                item === "ellipsis" ? (
+                    <Pagination.Ellipsis key={`e-${idx}`} disabled />
+                ) : (
+                    <Pagination.Item
+                        key={item}
+                        active={item === currentPage}
+                        onClick={() => onPageChange(item)}
+                    >
+                        {item}
+                    </Pagination.Item>
+                )
             )}
+            <Pagination.Next
+                className="ms-2"
+                disabled={currentPage === totalPages}
+                onClick={() => onPageChange(currentPage + 1)}
+            />
         </Pagination>
     );
 };
