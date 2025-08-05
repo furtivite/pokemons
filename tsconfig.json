@@ -17,7 +17,7 @@
       "@utils/*": ["utils/*"],
       "@pages/*": ["pages/*"],
       "@theme/*": ["theme/*"],
-      "@store/*": ["store/*"]
+      "@store": ["store/index.ts"],
     }
   },
   "include": ["src"],

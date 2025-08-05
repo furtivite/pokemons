@@ -4,7 +4,7 @@ import { useGetPokemonByNameQuery } from '@api/pokemonApi';
 import { LoadingSpinner } from '@components/LoadingSpinner';
 import { AbilityBadge } from '@components/AbilityBadge';
 import { toggleSelected } from '@features/compare/compareSlice';
-import { useAppDispatch } from '../../store';
+import { useAppDispatch } from '@store';
 
 interface CompareCardProps {
     name: string;

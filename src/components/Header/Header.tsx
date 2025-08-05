@@ -5,7 +5,7 @@ import { FaMoon, FaSun, FaBars, FaTimes } from 'react-icons/fa';
 import { ThemeContext } from '@theme/ThemeContext';
 import { Logo } from "@components/Logo";
 import { selectSelectedPokemons, clearSelected } from '@features/compare/compareSlice';
-import { useAppDispatch, useAppSelector } from '../../store';
+import { useAppDispatch, useAppSelector } from '@store';
 
 export const Header: React.FC = () => {
   const { pathname } = useLocation();

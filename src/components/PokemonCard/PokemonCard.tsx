@@ -2,14 +2,14 @@ import React from 'react';
 import { Card, Badge, Form, Alert } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useGetPokemonByNameQuery } from '@api/pokemonApi';
-import { useAppDispatch, useAppSelector } from '../store';
+import { useAppDispatch, useAppSelector } from '@store';
 import {
     selectSelectedPokemons,
     toggleSelected,
     MAX_COMPARE,
 } from '@features/compare/compareSlice';
-import { LoadingSpinner } from './LoadingSpinner';
-import { AbilityBadge } from './AbilityBadge';
+import { LoadingSpinner } from '@components/LoadingSpinner';
+import { AbilityBadge } from '@components/AbilityBadge';
 
 interface PokemonCardProps {
     name: string;
