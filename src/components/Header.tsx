@@ -7,8 +7,6 @@ import { Logo } from "@components/Logo";
 import { selectSelectedPokemons, clearSelected } from '@features/compare/compareSlice';
 import { useAppDispatch, useAppSelector } from '../store';
 
-
-
 export const Header: React.FC = () => {
   const { pathname } = useLocation();
   const selected = useAppSelector(selectSelectedPokemons);
@@ -16,7 +14,12 @@ export const Header: React.FC = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
-    <Navbar bg="light" expand="lg" className="sticky-top shadow-sm">
+    <Navbar
+      bg={theme}
+      variant={theme}
+      expand="lg"
+      className="sticky-top shadow-sm"
+    >
       <Container fluid="sm">
         <Navbar.Brand>
           {pathname === '/' ? (
