@@ -7,8 +7,8 @@
   "scripts": {
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
-    "test": "jest --maxWorkers=50%",
-    "test:coverage": "jest --coverage --maxWorkers=50%",
+    "test": "jest --maxWorkers=2",
+    "test:coverage": "jest --coverage --maxWorkers=2",
     "test:watch": "jest --watch",
     "lint": "eslint --ext .ts,.tsx src",
     "lint:fix": "eslint --ext .ts,.tsx --fix src",
