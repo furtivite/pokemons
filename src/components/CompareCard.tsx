@@ -22,12 +22,19 @@ export const CompareCard: React.FC<CompareCardProps> = ({ name }) => {
 
     return (
         <Card className="mb-3 mw-lg-50">
-            <Card.Header className="d-flex justify-content-end p-2">
+            <Card.Header className="d-flex justify-content-end p-2" role="group" aria-label={`Comparison controls for ${name}`}>
                 <Button
                     variant="outline-danger"
                     size="sm"
+                    tabIndex={0}
                     onClick={() => dispatch(toggleSelected(name))}
-                    aria-label="Remove from comparison"
+                    onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        dispatch(toggleSelected(name));
+                    }
+                    }}
+                    aria-label={`Remove ${name} from comparison`}
                 >
                     Remove
                 </Button>
