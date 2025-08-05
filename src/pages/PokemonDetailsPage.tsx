@@ -26,15 +26,29 @@ export const PokemonDetailsPage: React.FC = () => {
         <Container fluid="sm" className="py-4">
             <div className="d-flex mb-4 align-items-center">
                 <BackButton />
-                <ButtonGroup className="ms-3">
+                <ButtonGroup className="ms-3" aria-label="Compare toggle group">
                     <ToggleButton
                         id="compare-toggle"
                         type="checkbox"
+                        role="switch"
+                        aria-checked={isInCompare}
+                        aria-label={
+                            isInCompare
+                            ? `Remove ${name} from comparison`
+                            : `Add ${name} to comparison`
+                        }
                         variant={isInCompare ? 'success' : 'outline-primary'}
                         checked={isInCompare}
                         value={name!}
                         disabled={!isInCompare && selected.length >= MAX_COMPARE}
+                        tabIndex={0}
                         onChange={() => name && dispatch(toggleSelected(name))}
+                        onKeyDown={(e) => {
+                            if (e.key === ' ' || e.key === 'Enter') {
+                                e.preventDefault();
+                                name && dispatch(toggleSelected(name));
+                            }
+                        }}
                     >
                         {isInCompare ? 'Added to Compare' : 'Add to Compare'}
                     </ToggleButton>

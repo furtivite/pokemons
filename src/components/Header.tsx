@@ -30,7 +30,7 @@ export const Header: React.FC = () => {
             <Nav className="d-flex align-items-center gap-2">
               {selected.length > 0 && (
                 pathname !== '/compare' ? (
-                  <Nav.Link as={Link} to="/compare">
+                  <Nav.Link as={Link} to="/compare" tabIndex={0}>
                     {selected.length} in Comparison
                   </Nav.Link>
                 ) : (
@@ -45,6 +45,7 @@ export const Header: React.FC = () => {
                   size="sm"
                   aria-label="Clear comparison selection"
                   onClick={() => dispatch(clearSelected())}
+                  tabIndex={0}
                 >
                   Clear Comparison
                 </Button>
@@ -54,6 +55,7 @@ export const Header: React.FC = () => {
                 size="sm"
                 aria-label="Toggle theme"
                 onClick={toggleTheme}
+                tabIndex={0}
               >
                 {theme === 'light' ? <FaMoon /> : <FaSun />}
               </Button>
