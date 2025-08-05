@@ -22,47 +22,43 @@ export const Header: React.FC = () => {
         className="sticky-top shadow-sm"
       >
         <Container fluid="sm">
-          <Navbar.Brand>
-            {pathname === '/' ? (
-              <Logo />
-            ) : (
-              <Link to="/">
-                <Logo />
-              </Link>
-            )}
+          <Navbar.Brand as={Link} to="/">
+            <Logo />
           </Navbar.Brand>
-          {selected.length > 0 && (
-            <Nav className="ms-auto d-flex align-items-center gap-2">
-              {pathname !== '/compare' ? (
-                  <Nav.Link
-                    as={Link}
-                    to="/compare"
-                    className="p-0"
-                  >
+          <Navbar.Toggle aria-controls="main-navbar" />
+          <Navbar.Collapse id="main-navbar" className="justify-content-end">
+            <Nav className="d-flex align-items-center gap-2">
+              {selected.length > 0 && (
+                pathname !== '/compare' ? (
+                  <Nav.Link as={Link} to="/compare">
                     {selected.length} in Comparison
                   </Nav.Link>
                 ) : (
-                  <div>{selected.length} in Comparison</div>
+                  <Nav.Link disabled>
+                    {selected.length} in Comparison
+                  </Nav.Link>
+                )
+              )}
+              {selected.length > 0 && (
+                <Button
+                  variant="outline-danger"
+                  size="sm"
+                  aria-label="Clear comparison selection"
+                  onClick={() => dispatch(clearSelected())}
+                >
+                  Clear Comparison
+                </Button>
               )}
               <Button
-                variant="outline-danger"
+                variant="outline-secondary"
                 size="sm"
-                onClick={() => dispatch(clearSelected())}
-                aria-label="Clear all comparisons"
+                aria-label="Toggle theme"
+                onClick={toggleTheme}
               >
-                Clear Comparison
+                {theme === 'light' ? <FaMoon /> : <FaSun />}
               </Button>
             </Nav>
-          )}
-          <Button
-            variant="outline-secondary"
-            size="sm"
-            className="ms-2"
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-          >
-            {theme === 'light' ? <FaMoon /> : <FaSun />}
-          </Button>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
     </header>
