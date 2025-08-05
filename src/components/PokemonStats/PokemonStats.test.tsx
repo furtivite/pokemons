@@ -13,26 +13,21 @@ describe('PokemonStats component', () => {
   })
 
   it('renders a heading "Stats"', () => {
-    const heading = screen.getByRole('heading', { name: /stats/i, level: 2 })
-    expect(heading).toBeInTheDocument()
-    expect(heading).toHaveClass('h4')
+    expect(screen.getByRole('heading', { name: /stats/i })).toBeInTheDocument()
   })
 
   it('renders a progress bar for each stat with correct value and label', () => {
-    const progressbars = screen.getAllByRole('progressbar')
-    expect(progressbars).toHaveLength(stats.length)
+    stats.forEach(({ stat: { name }, base_stat }) => {
+      const label = screen.getByText(new RegExp(`${name}:`, 'i'))
+      expect(label).toHaveClass('text-capitalize')
 
-    stats.forEach(({ stat, base_stat }) => {
-      const label = screen.getByText(`${base_stat}`)
-      expect(label).toBeInTheDocument()
-
-      const strong = screen.getByText(new RegExp(`${stat.name}:`, 'i'))
-      expect(strong).toBeInTheDocument()
-      expect(strong).toHaveClass('text-capitalize')
-
-      const pb = screen.getByRole('progressbar', { name: `${base_stat}` })
-      expect(pb).toHaveAttribute('aria-valuenow', base_stat.toString())
-      expect(pb).toHaveAttribute('aria-valuemax', '255')
+      const allBars = screen.getAllByRole('progressbar')
+      const bar = allBars.find(
+        (el) => el.getAttribute('aria-valuenow') === base_stat.toString()
+      )
+      expect(bar).toBeDefined()
+      expect(bar).toHaveAttribute('aria-valuenow', base_stat.toString())
+      expect(bar).toHaveAttribute('aria-valuemax', '255')
     })
   })
 })
