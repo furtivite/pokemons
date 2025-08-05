@@ -35,6 +35,10 @@ export const PokemonCard: React.FC<PokemonCardProps> = ({ name }) => {
                 if (e.key === 'Enter') {
                     navigate(`/pokemon/${name}`);
                 }
+                if (e.key === ' ' || e.key === 'Spacebar') {
+                    dispatch(toggleSelected(name));
+                    e.preventDefault();
+                }
             }}
             className="mb-4 h-100"
         >
