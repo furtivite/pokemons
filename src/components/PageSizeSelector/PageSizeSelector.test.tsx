@@ -10,9 +10,9 @@ describe('PageSizeSelector component', () => {
     const select = screen.getByRole('combobox') as HTMLSelectElement;
     expect(select).toBeInTheDocument();
     options.forEach((n) => {
-    const option = select.querySelector(`option[value="${n}"]`) as HTMLOptionElement;
-    expect(option).toBeInTheDocument();
-    expect(option.selected).toBe(n === 20);
+      const option = select.querySelector(`option[value="${n}"]`) as HTMLOptionElement;
+      expect(option).toBeInTheDocument();
+      expect(option.selected).toBe(n === 20);
     });
   });
 

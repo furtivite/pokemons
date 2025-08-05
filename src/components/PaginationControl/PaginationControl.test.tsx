@@ -9,13 +9,7 @@ describe('PaginationControl component', () => {
   });
 
   it('renders all pages up to 7 without ellipsis', () => {
-    render(
-      <PaginationControl
-        totalPages={5}
-        currentPage={3}
-        onPageChange={onPageChange}
-      />
-    );
+    render(<PaginationControl totalPages={5} currentPage={3} onPageChange={onPageChange} />);
 
     for (let i = 1; i <= 5; i++) {
       expect(screen.getByText(String(i))).toBeInTheDocument();
@@ -24,13 +18,7 @@ describe('PaginationControl component', () => {
   });
 
   it('renders ellipses and edge pages when totalPages > 7', () => {
-    render(
-      <PaginationControl
-        totalPages={20}
-        currentPage={10}
-        onPageChange={onPageChange}
-      />
-    );
+    render(<PaginationControl totalPages={20} currentPage={10} onPageChange={onPageChange} />);
 
     expect(screen.getByText('1')).toBeInTheDocument();
     expect(screen.getByText('2')).toBeInTheDocument();
@@ -40,22 +28,14 @@ describe('PaginationControl component', () => {
   });
 
   it('calls onPageChange when a page number is clicked', () => {
-    render(
-      <PaginationControl
-        totalPages={5}
-        currentPage={2}
-        onPageChange={onPageChange}
-      />
-    );
+    render(<PaginationControl totalPages={5} currentPage={2} onPageChange={onPageChange} />);
 
     fireEvent.click(screen.getByText('4'));
     expect(onPageChange).toHaveBeenCalledWith(4);
   });
 
   it('calls onPageChange with out-of-range values when clicking Prev on first page or Next on last page', () => {
-    const { unmount } = render(
-      <PaginationControl totalPages={3} currentPage={1} onPageChange={onPageChange} />
-    );
+    const { unmount } = render(<PaginationControl totalPages={3} currentPage={1} onPageChange={onPageChange} />);
     fireEvent.click(screen.getByText('‹'));
     expect(onPageChange).toHaveBeenCalledWith(0);
 
@@ -68,13 +48,7 @@ describe('PaginationControl component', () => {
   });
 
   it('calls onPageChange when Prev or Next is clicked on middle pages', () => {
-    render(
-      <PaginationControl
-        totalPages={5}
-        currentPage={3}
-        onPageChange={onPageChange}
-      />
-    );
+    render(<PaginationControl totalPages={5} currentPage={3} onPageChange={onPageChange} />);
 
     fireEvent.click(screen.getByText('‹'));
     expect(onPageChange).toHaveBeenCalledWith(2);

@@ -36,13 +36,7 @@ export const pokemonApi = createApi({
   endpoints: (builder) => ({
     getPokemonList: builder.query<PokemonListResponse, { limit: number; offset: number }>({
       query: ({ limit, offset }): string => `pokemon?limit=${limit}&offset=${offset}`,
-      providesTags: (result) =>
-        result
-          ? [
-              ...result.results.map(({ name }) => ({ type: 'Pokemon' as const, id: name })),
-              { type: 'Pokemon', id: 'LIST' },
-            ]
-          : [{ type: 'Pokemon', id: 'LIST' }],
+      providesTags: (result) => (result ? [...result.results.map(({ name }) => ({ type: 'Pokemon' as const, id: name })), { type: 'Pokemon', id: 'LIST' }] : [{ type: 'Pokemon', id: 'LIST' }]),
     }),
     getPokemonByName: builder.query<Pokemon, string>({
       query: (name) => `pokemon/${name}`,
@@ -55,8 +49,4 @@ export const pokemonApi = createApi({
   }),
 });
 
-export const {
-  useGetPokemonListQuery,
-  useGetPokemonByNameQuery,
-  useGetAbilityByNameQuery,
-} = pokemonApi;
+export const { useGetPokemonListQuery, useGetPokemonByNameQuery, useGetAbilityByNameQuery } = pokemonApi;

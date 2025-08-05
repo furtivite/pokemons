@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { Layout } from '@components/Layout';
 import { LoadingSpinner } from '@components/LoadingSpinner';
 
-const PokemonListPage = lazy(() => import( /* webpackChunkName: "pokemon-list-page" */ '@pages/PokemonListPage'));
+const PokemonListPage = lazy(() => import(/* webpackChunkName: "pokemon-list-page" */ '@pages/PokemonListPage'));
 const PokemonDetailsPage = lazy(() => import(/* webpackChunkName: "pokemon-details-page" */ '@pages/PokemonDetailsPage'));
 const ComparePage = lazy(() => import(/* webpackChunkName: "pokemon-compare-page" */ '@pages/ComparePage'));
 
