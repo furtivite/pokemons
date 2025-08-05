@@ -9,6 +9,7 @@ import {
     MAX_COMPARE,
 } from '@features/compare/compareSlice';
 import { LoadingSpinner } from './LoadingSpinner';
+import { AbilityBadge } from './AbilityBadge';
 
 interface PokemonCardProps {
     name: string;
@@ -82,13 +83,7 @@ export const PokemonCard: React.FC<PokemonCardProps> = ({ name }) => {
                 </div>
                 <div className="mt-auto">
                     {pokemon.abilities.map((ab) => (
-                        <Badge
-                            bg="info"
-                            key={ab.ability.name}
-                            className="me-1 text-capitalize"
-                        >
-                            {ab.ability.name}
-                        </Badge>
+                        <AbilityBadge key={ab.ability.name} name={ab.ability.name} />
                     ))}
                 </div>
             </Card.Body>

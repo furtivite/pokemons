@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, Badge, ProgressBar, Alert, Button } from 'react-bootstrap';
 import { useGetPokemonByNameQuery } from '@api/pokemonApi';
 import { LoadingSpinner } from '@components/LoadingSpinner';
+import { AbilityBadge } from '@components/AbilityBadge';
 import { toggleSelected } from '@features/compare/compareSlice';
 import { useAppDispatch } from '../store';
 
@@ -68,13 +69,7 @@ export const CompareCard: React.FC<CompareCardProps> = ({ name }) => {
 
                 <div>
                     {pokemon.abilities.map((ab) => (
-                        <Badge
-                            bg="info"
-                            key={ab.ability.name}
-                            className="me-1 text-capitalize"
-                        >
-                            {ab.ability.name}
-                        </Badge>
+                        <AbilityBadge key={ab.ability.name} name={ab.ability.name} />
                     ))}
                 </div>
             </Card.Body>
