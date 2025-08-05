@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Container, Row, Alert, ButtonGroup, ToggleButton } from 'react-bootstrap';
+import { Container, Row, Alert, ButtonGroup, ToggleButton, Col } from 'react-bootstrap';
 import { useGetPokemonByNameQuery } from '@api/pokemonApi';
 import { LoadingSpinner } from '@components/LoadingSpinner';
 import { BackButton } from '@components/BackButton';
@@ -46,8 +46,12 @@ export const PokemonDetailsPage: React.FC = () => {
                     spriteUrl={pokemon.sprites.front_default}
                     types={pokemon.types}
                 />
-                <PokemonStats stats={pokemon.stats} />
-                <PokemonAbilities abilities={pokemon.abilities} />
+                <Col xs={12} md={4}>
+                    <PokemonStats stats={pokemon.stats} />
+                </Col>
+                <Col xs={12} md={4}>
+                    <PokemonAbilities abilities={pokemon.abilities} />
+                </Col>
             </Row>
         </Container>
     );
