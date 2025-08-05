@@ -20,7 +20,13 @@ export const ComparePage: React.FC = () => {
         <h1 className='mb-4 h3'>Comparison ({selected.length})</h1>
         <Row>
             {selected.map((name) => (
-                <Col key={name} xs={12} md={Math.floor(12 / selected.length)}>
+                <Col 
+                  key={name} 
+                  xs={12}
+                  sm={selected.length > 1 ? 6 : 12}
+                  md={Math.floor(12 / selected.length)}
+                  className="mb-4"
+                >
                     <CompareCard name={name} />
                 </Col>
             ))}
