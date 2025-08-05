@@ -1,29 +1,39 @@
+import { ComponentProps } from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { PokemonListPage } from './PokemonListPage'
 import { useGetPokemonListQuery } from '@api/pokemonApi'
+import { SearchBar } from '@components/SearchBar'
+import { PageSizeSelector } from '@components/PageSizeSelector'
+import { PaginationControl } from '@components/PaginationControl'
+import { PokemonCard } from '@components/PokemonCard'
+
+type SearchBarProps = ComponentProps<typeof SearchBar>
+type PageSizeSelectorProps = ComponentProps<typeof PageSizeSelector>
+type PaginationControlProps = ComponentProps<typeof PaginationControl>
+type PokemonCardProps = ComponentProps<typeof PokemonCard>
 
 jest.mock('@api/pokemonApi', () => ({
   useGetPokemonListQuery: jest.fn(),
 }))
 
 jest.mock('@components/SearchBar', () => ({
-  SearchBar: ({ value, onChange }: any) => (
+  SearchBar: ({ value, onChange }: SearchBarProps) => (
     <div data-testid="searchbar">
       <input
         placeholder="Search"
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={e => onChange(e.target.value)}
       />
     </div>
   ),
 }))
 
 jest.mock('@components/PageSizeSelector', () => ({
-  PageSizeSelector: ({ value, onChange }: any) => (
+  PageSizeSelector: ({ value, onChange }: PageSizeSelectorProps) => (
     <div data-testid="pagesize">
       <select
         value={value}
-        onChange={(e) => onChange(Number(e.target.value))}
+        onChange={e => onChange(Number(e.target.value))}
       >
         <option value={10}>10</option>
         <option value={20}>20</option>
@@ -33,25 +43,33 @@ jest.mock('@components/PageSizeSelector', () => ({
 }))
 
 jest.mock('@components/PaginationControl', () => ({
-  PaginationControl: ({ totalPages, currentPage, onPageChange }: any) => (
+  PaginationControl: ({
+    totalPages,
+    currentPage,
+    onPageChange,
+  }: PaginationControlProps) => (
     <div data-testid="pagination">
       <button
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
-      >Prev</button>
+      >
+        Prev
+      </button>
       <span>
         {currentPage}/{totalPages}
       </span>
       <button
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
-      >Next</button>
+      >
+        Next
+      </button>
     </div>
   ),
 }))
 
 jest.mock('@components/PokemonCard', () => ({
-  PokemonCard: ({ name }: any) => <div data-testid="card">{name}</div>,
+  PokemonCard: ({ name }: PokemonCardProps) => <div data-testid="card">{name}</div>,
 }))
 
 jest.mock('@components/PokemonCardSkeleton', () => ({
@@ -95,32 +113,28 @@ describe('PokemonListPage', () => {
     })
     render(<PokemonListPage />)
 
-    // SearchBar and PageSizeSelector present
     expect(screen.getByTestId('searchbar')).toBeInTheDocument()
     expect(screen.getByTestId('pagesize')).toBeInTheDocument()
 
-    // All 5 cards rendered
     const cards = screen.getAllByTestId('card')
     expect(cards).toHaveLength(5)
     expect(cards[0]).toHaveTextContent('p0')
 
-    // Pagination shows "1/1"
     expect(screen.getByTestId('pagination')).toHaveTextContent('1/1')
 
-    // Search filters list
     const input = screen.getByPlaceholderText('Search')
     fireEvent.change(input, { target: { value: 'p1' } })
-    // filtered list resets page to 1; now only 'p1'
     expect(screen.getAllByTestId('card')).toHaveLength(1)
     expect(screen.getByText('p1')).toBeInTheDocument()
 
-    // Change page size
-    const select = screen.getByTestId('pagesize').querySelector('select')!
+    const pagesizeContainer = screen.getByTestId('pagesize')
+    const selectElem = pagesizeContainer.querySelector('select')
+    expect(selectElem).toBeInTheDocument()
+    const select = selectElem as HTMLSelectElement
+
     fireEvent.change(select, { target: { value: '10' } })
-    // still shows same filtered result
     expect(screen.getAllByTestId('card')).toHaveLength(1)
 
-    // Pagination buttons
     const prev = screen.getByText('Prev')
     const next = screen.getByText('Next')
     expect(prev).toBeDisabled()
