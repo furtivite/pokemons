@@ -1,5 +1,5 @@
 import React from "react";
-import { Toast, ToastContainer, ToastProps } from "react-bootstrap";
+import { Toast, ToastProps } from "react-bootstrap";
 
 interface LayoutToastProps extends ToastProps {
     title: string,

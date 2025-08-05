@@ -15,7 +15,7 @@ export interface Pokemon {
   name: string;
   sprites: {
     front_default: string;
-    [key: string]: any;
+    [key: string]: unknown;
   };
   types: { slot: number; type: NamedAPIResource }[];
   stats: { base_stat: number; stat: NamedAPIResource }[];
@@ -35,7 +35,7 @@ export const pokemonApi = createApi({
   tagTypes: ['Pokemon', 'Ability'],
   endpoints: (builder) => ({
     getPokemonList: builder.query<PokemonListResponse, { limit: number; offset: number }>({
-      query: ({ limit, offset }) => `pokemon?limit=${limit}&offset=${offset}`,
+      query: ({ limit, offset }): string => `pokemon?limit=${limit}&offset=${offset}`,
       providesTags: (result) =>
         result
           ? [

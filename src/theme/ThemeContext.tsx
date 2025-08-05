@@ -4,6 +4,7 @@ export type Theme = 'light' | 'dark';
 export const ThemeContext = createContext<{
     theme: Theme;
     toggleTheme: () => void;
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
 }>({ theme: 'light', toggleTheme: () => {} });
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {

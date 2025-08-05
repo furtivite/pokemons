@@ -39,7 +39,7 @@ export const PokemonDetailsPage: React.FC = () => {
                         }
                         variant={isInCompare ? 'success' : 'outline-primary'}
                         checked={isInCompare}
-                        value={name!}
+                        value={name ?? ''}
                         disabled={!isInCompare && selected.length >= MAX_COMPARE}
                         tabIndex={0}
                         onChange={() => name && dispatch(toggleSelected(name))}

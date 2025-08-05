@@ -22,16 +22,18 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     const curr = selected;
 
     if (curr.length > prev.length) {
-      const added = curr.find((n) => !prev.includes(n))!;
-      setToasts((t) => [
-        ...t,
-        {
-          id: Date.now(),
-          bg: "success",
-          title: "Added to Comparison",
-          text: `You added ${added} to comparison`,
-        },
-      ]);
+      const added = curr.find((n) => !prev.includes(n));
+      if (added) {
+        setToasts((t) => [
+          ...t,
+          {
+            id: Date.now(),
+            bg: "success",
+            title: "Added to Comparison",
+            text: `You added ${added} to comparison`,
+          },
+        ]);
+      }
 
       if (curr.length === MAX_COMPARE) {
         setTimeout(() => {
@@ -47,17 +49,18 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         }, 500);
       }
     } else if (curr.length < prev.length) {
-      const removed = prev.find((n) => !curr.includes(n))!;
-
-      setToasts((t) => [
-        ...t,
-        {
-          id: Date.now(),
-          bg: "warning",
-          title: "Removed from Comparison",
-          text: `You removed ${removed} from comparison`,
-        },
-      ]);
+      const removed = prev.find((n) => !curr.includes(n));
+      if (removed) {
+        setToasts((t) => [
+          ...t,
+          {
+            id: Date.now(),
+            bg: "warning",
+            title: "Removed from Comparison",
+            text: `You removed ${removed} from comparison`,
+          },
+        ]);
+      }
     }
 
     prevRef.current = curr;
@@ -70,7 +73,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       </a>
       <Header />
 
-      <main id="main-content" className="flex-grow-1 py-4">
+      <main id="main-content" className="flex-grow-1 py-4" role="main">
         <Container fluid="sm">
           <ToastContainer position="top-end" className="p-3">
             {toasts.map(({ id, bg, title, text }) => (
