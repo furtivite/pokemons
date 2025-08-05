@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Badge, Form, Alert } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useGetPokemonByNameQuery } from '@api/pokemonApi';
 import { useAppDispatch, useAppSelector } from '../store';
 import {
@@ -20,13 +20,24 @@ export const PokemonCard: React.FC<PokemonCardProps> = ({ name }) => {
     const isInCompare = selected.includes(name);
 
     const { data: pokemon, isLoading, error } = useGetPokemonByNameQuery(name);
+    const navigate = useNavigate();
 
     if (isLoading) return <LoadingSpinner className="d-block mx-auto my-4" />;
     if (error || !pokemon)
     return <Alert variant="danger">Error loading {name}</Alert>;
 
     return (
-        <Card className="mb-4 h-100">
+        <Card
+            as="article"
+            role="group"
+            tabIndex={0}
+            onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                    navigate(`/pokemon/${name}`);
+                }
+            }}
+            className="mb-4 h-100"
+        >
             <Card.Img
                 variant="top"
                 src={pokemon.sprites.front_default}
@@ -35,7 +46,11 @@ export const PokemonCard: React.FC<PokemonCardProps> = ({ name }) => {
             />
             <Card.Body className="d-flex flex-column">
                 <div className="d-flex justify-content-between align-items-start mb-2">
-                    <Card.Title className="h5 text-capitalize mb-0">
+                    <Card.Title
+                        as="h2"
+                        id={`card-title-${name}`}
+                        className="h5 text-capitalize mb-0"
+                    >
                         <Link to={`/pokemon/${name}`}>{name}</Link>
                     </Card.Title>
                     <Form.Check
@@ -45,8 +60,8 @@ export const PokemonCard: React.FC<PokemonCardProps> = ({ name }) => {
                         onChange={() => dispatch(toggleSelected(name))}
                         aria-label={
                             isInCompare
-                                ? `${name} added to compare`
-                                : `add ${name} to compare`
+                            ? `Remove ${name} from comparison`
+                            : `Add ${name} to comparison`
                         }
                     />
                 </div>
