@@ -23,7 +23,7 @@ export const PokemonDetailsPage: React.FC = () => {
     if (!pokemon) return <Alert variant="warning">Pokémon not found.</Alert>;
 
     return (
-        <Container className="py-4">
+        <Container fluid="sm" className="py-4">
             <div className="d-flex mb-4 align-items-center">
                 <BackButton />
                 <ButtonGroup className="ms-3">

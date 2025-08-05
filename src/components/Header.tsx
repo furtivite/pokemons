@@ -12,7 +12,7 @@ export const Header: React.FC = () => {
 
   return (
     <Navbar bg="light" expand="lg" className="sticky-top shadow-sm">
-      <Container>
+      <Container fluid="sm">
         <Navbar.Brand>
           {pathname === '/' ? (
             <Logo />

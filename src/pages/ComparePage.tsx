@@ -9,14 +9,14 @@ export const ComparePage: React.FC = () => {
 
   if (selected.length === 0) {
     return (
-      <Container className="py-4">
+      <Container fluid="sm" className="py-4">
         <Alert variant="info">No Pokémon selected for comparison.</Alert>
       </Container>
     );
   }
 
   return (
-    <Container className="py-4">
+    <Container fluid="sm" className="py-4">
         <h1 className='mb-4 h3'>Comparison ({selected.length})</h1>
         <Row>
             {selected.map((name) => (

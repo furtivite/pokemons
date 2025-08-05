@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 
 export const Footer: React.FC = () => (
     <footer className="bg-light text-center text-secondary py-3 mt-auto">
-        <Container>
+        <Container fluid="sm">
             <p className="mb-0">
                 ©&nbsp;{new Date().getFullYear()} by&nbsp;
                 <a href="https://github.com/furtivite" target="_blank" rel="noopener noreferrer">

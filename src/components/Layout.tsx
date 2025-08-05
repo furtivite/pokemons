@@ -28,7 +28,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       <Header />
 
       <main className="flex-grow-1 py-4">
-        <Container>
+        <Container fluid="sm">
           <LayoutToast 
             bg="warning" 
             onClose={closeToast} 
