@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "@theme/ThemeContext";
+import { ErrorBoundary } from "@components/ErrorBoundary";
 
 import App from "./App";
 import store from "./store";
@@ -19,7 +20,9 @@ root.render(
     <Provider store={store}>
       <ThemeProvider>
         <BrowserRouter>
-          <App />
+          <ErrorBoundary>
+            <App />
+          </ErrorBoundary>
         </BrowserRouter>
       </ThemeProvider>
     </Provider>
