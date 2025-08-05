@@ -12,13 +12,20 @@ const config: Config.InitialOptions = {
     '^.+\\.(t|j)sx?$': 'ts-jest',
   },
 
+  transformIgnorePatterns: [
+    'node_modules/(?!(react-loading-skeleton)/)'
+  ],
+
   moduleNameMapper: {
+    '^@api/pokemonApi$': '<rootDir>/__mocks__/@api/pokemonApi.ts',
     '^@components/(.*)$': '<rootDir>/src/components/$1',
     '^@pages/(.*)$': '<rootDir>/src/pages/$1',
     '^@api/(.*)$': '<rootDir>/src/api/$1',
     '^@features/(.*)$': '<rootDir>/src/features/$1',
     '^@theme/(.*)$': '<rootDir>/src/theme/$1',
     '^@store$': '<rootDir>/src/store',
+    '\\.(css|scss|sass)$': 'identity-obj-proxy',
+    '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/__mocks__/fileMock.js',
   },
 
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],

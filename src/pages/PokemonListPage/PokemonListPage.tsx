@@ -11,7 +11,7 @@ import { PaginationControl } from "@components/PaginationControl";
 import { PokemonCard } from "@components/PokemonCard";
 import { PokemonCardSkeleton } from "@components/PokemonCardSkeleton";
 
-const PokemonListPage: React.FC = () => {
+export const PokemonListPage: React.FC = () => {
     const [search, setSearch] = useState("");
     const [pageSize, setPageSize] = useState(20);
     const [currentPage, setCurrentPage] = useState(1);
@@ -88,5 +88,3 @@ const PokemonListPage: React.FC = () => {
         </>
     );
 };
-
-export default PokemonListPage;
