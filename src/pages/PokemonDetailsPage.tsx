@@ -35,9 +35,7 @@ export const PokemonDetailsPage: React.FC = () => {
                         value={name!}
                         disabled={!isInCompare && selected.length >= MAX_COMPARE}
                         onChange={() => name && dispatch(toggleSelected(name))}
-                    >
-                        {isInCompare ? 'Added to Compare' : 'Add to Compare'}
-                    </ToggleButton>
+                    />
                 </ButtonGroup>
             </div>
             <Row>
