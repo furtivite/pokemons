@@ -11,6 +11,9 @@ const config: Config.InitialOptions = {
   transform: {
     '^.+\\.(t|j)sx?$': 'ts-jest',
   },
+  transformIgnorePatterns: [
+    '/node_modules/(?!(react-loading-skeleton)/)'
+  ],
 
   moduleNameMapper: {
     '^@components/(.*)$': '<rootDir>/src/components/$1',
@@ -19,6 +22,8 @@ const config: Config.InitialOptions = {
     '^@features/(.*)$': '<rootDir>/src/features/$1',
     '^@theme/(.*)$': '<rootDir>/src/theme/$1',
     '^@store$': '<rootDir>/src/store',
+    '\\.(css|scss|sass)$': '<rootDir>/__mocks__/styleMock.js',
+    '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/__mocks__/fileMock.js',
   },
 
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
