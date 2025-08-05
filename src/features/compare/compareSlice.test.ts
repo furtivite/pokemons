@@ -3,7 +3,6 @@ import { configureStore } from '@reduxjs/toolkit'
 import compareReducer, {
   toggleSelected,
   clearSelected,
-  selectSelectedPokemons,
   MAX_COMPARE,
 } from './compareSlice'
 
