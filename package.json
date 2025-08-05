@@ -31,7 +31,7 @@
   "bugs": {
     "url": "https://github.com/furtivite/pokemons/issues"
   },
-  "homepage": "https://github.com/furtivite/pokemons#readme",
+  "homepage": "https://furtivite.github.io/pokemons/",
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
     "axios": "^1.11.0",
