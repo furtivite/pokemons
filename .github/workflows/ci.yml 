@@ -11,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        # Оставляем только Node 18, чтобы избежать ошибки os.availableParallelism
+        node-version: [18.x]
 
     steps:
       - name: Checkout repository
@@ -33,7 +34,8 @@ jobs:
         run: npm run lint
 
       - name: Run tests with coverage
-        run: npm run test:coverage
+        # Жестко ограничиваем число воркеров, чтобы Jest не падал
+        run: npm test -- --coverage --maxWorkers=50%
 
       - name: Upload coverage report
         if: success()
