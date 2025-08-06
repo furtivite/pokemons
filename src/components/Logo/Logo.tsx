@@ -1,9 +1,8 @@
 import React from 'react';
-import logo from '../../assets/logo.svg';
 
 export const Logo: React.FC = () => (
   <img
-    src="/logo.svg"
+    src="https://raw.githubusercontent.com/furtivite/cdn.common/refs/heads/main/pokemons/logo.svg"
     width={136}
     height={50}
     className="d-inline-block align-top"
